@@ -1,53 +1,234 @@
-# Xamarin.Forms to .NET MAUI Migration Guide
+# Master Prompt Index for GitHub Repository Management
 
 ## Overview
-This folder contains comprehensive prompts and guides for migrating Xamarin.Forms applications to .NET MAUI. Each prompt focuses on a specific aspect of the migration process.
+This directory contains a comprehensive collection of prompts designed to help with GitHub repository management, following conventional commits standards and best practices for .NET MAUI development.
 
 ## Available Prompts
 
-### 1. [Project Structure Migration](./xamarin-to-maui-project-structure.md)
-Covers the conversion of project files, solution structure, and basic configuration from Xamarin.Forms to .NET MAUI format.
+### 🐛 Issue Management
+- **[Bug Report Creation](./create-issue-from-bug.prompt.md)**
+  - Structured template for creating bug report issues
+  - Follows conventional commits format
+  - Includes environment details and reproduction steps
 
-**Key Topics:**
-- Project file updates (.csproj changes)
-- Platform consolidation
-- Resource management
-- Application startup configuration
+- **[Feature Request Creation](./create-issue-from-feature-request.prompt.md)**
+  - Template for feature request issues
+  - Business value and technical considerations
+  - Acceptance criteria and implementation estimates
 
-### 2. [API Migration](./xamarin-to-maui-api-migration.md)
-Focuses on updating C# code to use .NET MAUI APIs instead of deprecated Xamarin.Forms APIs.
+- **[Issue Triage](./triage-issues.prompt.md)**
+  - Guidelines for triaging and labeling issues
+  - Priority assignment and component classification
+  - Automation scripts for issue management
 
-**Key Topics:**
-- Namespace updates
-- Application lifecycle changes
-- Dependency Service to Dependency Injection
-- Device information APIs
-- Navigation pattern updates
+### 🔀 Pull Request Management
+- **[Pull Request Creation](./create-pull-request.prompt.md)**
+  - Comprehensive PR template following conventional commits
+  - Code review checklist and testing guidelines
+  - Breaking change documentation
 
-### 3. [Custom Renderers to Handlers](./xamarin-to-maui-handlers.md)
-Detailed guide for converting Xamarin.Forms custom renderers to the new .NET MAUI Handler architecture.
+### 📋 Release Management
+- **[Release Notes Generation](./generate-release-notes.prompt.md)**
+  - Professional release notes from conventional commits
+  - Semantic versioning determination
+  - Comprehensive change documentation
 
-**Key Topics:**
-- Handler architecture overview
-- Property mapping system
-- Platform-specific view creation
-- Handler registration
-- Performance improvements
+- **[Changelog Generation](./generate-changelog.prompt.md)**
+  - Keep a Changelog format implementation
+  - Automated changelog from git history
+  - Conventional commits categorization
 
-### 4. [XAML Migration](./xamarin-to-maui-xaml.md)
-Covers XAML file updates, namespace changes, and new MAUI-specific XAML features.
+### 🤖 Automation
+- **[GitHub Actions Workflows](./create-github-actions.prompt.md)**
+  - CI/CD pipeline templates
+  - Automated labeling and triage
+  - Security and quality workflows
 
-**Key Topics:**
-- XAML namespace declarations
-- Style and resource updates
-- New layout controls
-- Compiled bindings
-- Performance optimizations
+### 🔄 Migration Guides
+- **[Xamarin to MAUI API Migration](./xamarin-to-maui-api-migration.prompt.md)**
+  - API mapping and migration guidance
+  - Breaking changes documentation
 
-### 5. [Platform-Specific Code](./xamarin-to-maui-platform-code.md)
-Guide for migrating platform-specific implementations from separate projects to MAUI's unified structure.
+- **[MAUI Handlers Migration](./xamarin-to-maui-handlers.prompt.md)**
+  - Custom renderer to handler migration
+  - Platform-specific implementation patterns
 
-**Key Topics:**
+- **[MAUI Packages Migration](./xamarin-to-maui-packages.prompt.md)**
+  - NuGet package migration guidance
+  - Dependency updates and alternatives
+
+- **[MAUI Platform Code](./xamarin-to-maui-platform-code.prompt.md)**
+  - Platform-specific code migration
+  - Conditional compilation updates
+
+- **[MAUI Project Structure](./xamarin-to-maui-project-structure.prompt.md)**
+  - Project file and structure migration
+  - Build configuration updates
+
+- **[MAUI XAML Migration](./xamarin-to-maui-xaml.prompt.md)**
+  - XAML namespace and control updates
+  - Layout and styling migration
+
+- **[Migration Checklist](./xamarin-to-maui-checklist.prompt.md)**
+  - Comprehensive migration checklist
+  - Step-by-step migration process
+
+## Quick Start Guide
+
+### Using with GitHub CLI
+
+#### 1. Create a Bug Report
+```bash
+# Use the bug report template
+gh issue create --template bug_report.md \
+  --title "bug: navigation crash on modal dismiss (affects Navigation)" \
+  --label "bug,priority-high,area-navigation"
+```
+
+#### 2. Create a Feature Request
+```bash
+# Use the feature request template
+gh issue create --template feature_request.md \
+  --title "feat: add dark mode support (for Theming)" \
+  --label "enhancement,area-theming"
+```
+
+#### 3. Generate Release Notes
+```bash
+# Get commits since last release
+LAST_TAG=$(git tag --sort=-version:refname | head -1)
+git log $LAST_TAG..HEAD --oneline --pretty=format:"%h %s"
+
+# Create release with generated notes
+gh release create v1.2.0 \
+  --title "Release v1.2.0" \
+  --notes-file release-notes.md
+```
+
+#### 4. Automate Workflows
+```bash
+# Create CI workflow
+gh workflow create ci.yml --name "CI" --on "push,pull_request"
+
+# Run release workflow
+gh workflow run release.yml --ref main
+```
+
+### Conventional Commits Integration
+
+All prompts follow conventional commits format:
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+**Types:**
+- `feat`: New features
+- `fix`: Bug fixes
+- `docs`: Documentation changes
+- `style`: Formatting changes
+- `refactor`: Code refactoring
+- `perf`: Performance improvements
+- `test`: Test additions/fixes
+- `chore`: Maintenance tasks
+
+## Integration with Development Workflow
+
+### 1. Issue Creation
+- Use structured templates for consistency
+- Apply appropriate labels automatically
+- Link to related issues and PRs
+- Follow conventional commits in titles
+
+### 2. Pull Request Process
+- Ensure commit messages follow conventional format
+- Use comprehensive PR templates
+- Include testing and documentation updates
+- Document breaking changes clearly
+
+### 3. Release Management
+- Aggregate conventional commits for release notes
+- Determine semantic version automatically
+- Generate comprehensive changelogs
+- Maintain release history
+
+### 4. Automation
+- Auto-label issues and PRs
+- Validate conventional commits
+- Generate release notes automatically
+- Manage stale issues
+
+## Best Practices
+
+### Commit Message Guidelines
+```bash
+# Good examples
+feat(navigation): add modal presentation styles
+fix(databinding): resolve memory leak in ListView
+docs(samples): update migration guide
+perf(controls): optimize ListView rendering
+
+# Breaking changes
+feat!: remove deprecated APIs
+feat(api)!: change NavigationService interface
+
+BREAKING CHANGE: NavigationService.Push now requires additional parameter
+```
+
+### Issue and PR Labels
+```bash
+# Priority labels
+priority-critical, priority-high, priority-medium, priority-low
+
+# Type labels
+bug, enhancement, documentation, duplicate, question
+
+# Component labels
+area-navigation, area-databinding, area-controls, area-platform-android
+
+# Status labels
+status-awaiting-response, status-blocked, status-in-progress
+```
+
+### Release Versioning
+- **MAJOR** (X.0.0): Breaking changes, API removals
+- **MINOR** (X.Y.0): New features, backward compatible
+- **PATCH** (X.Y.Z): Bug fixes, small improvements
+
+## Customization
+
+### Adapting for Your Project
+1. **Update component labels** to match your project structure
+2. **Modify issue templates** for your specific requirements
+3. **Customize workflows** for your CI/CD needs
+4. **Adjust automation** based on team preferences
+
+### Team Guidelines
+- Establish clear conventional commits standards
+- Define priority and severity levels
+- Set response time expectations
+- Create contributor onboarding process
+
+## Resources
+
+### External References
+- [Conventional Commits](https://www.conventionalcommits.org/)
+- [Keep a Changelog](https://keepachangelog.com/)
+- [Semantic Versioning](https://semver.org/)
+- [GitHub CLI](https://cli.github.com/)
+
+### Internal Documentation
+- [Contributing Guidelines](../CONTRIBUTING.md)
+- [Code of Conduct](../CODE_OF_CONDUCT.md)
+- [Security Policy](../SECURITY.md)
+
+## Legacy Migration Prompts
+
+### 🔄 Xamarin.Forms to .NET MAUI Migration
+These prompts help with migrating existing Xamarin.Forms applications to .NET MAUI:
 - Platforms folder organization
 - MainActivity/AppDelegate updates
 - Service implementation migration
