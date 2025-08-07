@@ -1,4 +1,10 @@
-# Xamarin.Forms code samples
+# Migrating Xamarin.Forms to MAUI using GitHub Copilot
+
+This repo is forked from https://github.com/xamarin/xamarin-forms-samples.
+
+This forked version is used to demo how to leverage GitHub Copilot in VS Code to help migrate or transition Xamarin Forms to MAUI via customizations and reusable prompts/advanced settings like custom Prompts, Custom Copilot Instructions and Custom Chat Modes (e.g. Burke Holland's "Beast Mode" https://burkeholland.github.io/posts/beast-mode-3-1/)
+
+## Original repo README:
 
 The samples in this repository demonstrate how to use different aspects of Xamarin.Forms to build cross-platform apps for iOS, Android, and the Universal Windows Platform (UWP). Please visit Microsoft [code sample browser](https://docs.microsoft.com/samples/browse/?term=Xamarin.Forms) to download individual samples.
 
